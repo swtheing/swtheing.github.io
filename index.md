@@ -114,7 +114,6 @@ with tf.variable_scope('layer_two',reuse=False):
 
 # tf operations
 def discount_rewards(r):
-  """ take 1D float array of rewards and compute discounted reward """
   discounted_r = np.zeros_like(r,dtype=np.float32)
   running_add = 0
   for t in reversed(xrange(0, r.size)):
@@ -150,7 +149,6 @@ p = tf.nn.softmax(tf_aprob)
 cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(tf_aprob, tf_y)
 loss = tf.reduce_sum(tf.mul(cross_entropy,tf_epr))
 train_op = tf.train.RMSPropOptimizer(learning_rate, decay=decay).minimize(loss)
-#print(tf_grads)
 
 # tf graph initialization
 sess = tf.InteractiveSession()
