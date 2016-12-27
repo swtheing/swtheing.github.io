@@ -2,7 +2,7 @@ title: Policy Gradient in Pong Game
 description: 计算机界2009的技术博客
 google_analytics: 
 show_downloads: true
-theme: jekyll-theme-cayman
+theme: jekyll-theme-slate
 
 gems:
   - jekyll-mentions
