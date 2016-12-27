@@ -156,7 +156,7 @@ tf.initialize_all_variables().run()
 
 # try load saved model
 saver = tf.train.Saver(tf.all_variables())
-load_was_success = True # yes, I'm being optimistic
+load_was_success = True 
 try:
     save_dir = '/'.join(save_path.split('/')[:-1])
     ckpt = tf.train.get_checkpoint_state(save_dir)
