@@ -60,7 +60,7 @@ ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "审美是一种人生追求<br>创造是一种生活态度"
-sidebar-avatar: /img/sw.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: https://swtheing.github.io/swtheking.github.io/img/sw.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
