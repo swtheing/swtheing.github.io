@@ -3,10 +3,10 @@
   <channel>
     <title>S&amp;W Blog</title>
     <description>一个关乎于深度学习的故事，一颗期许罗曼蒂克的内心，一位篮球界的地板流选手，一名非专业的脱口秀演员</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 03 Jan 2017 10:35:42 +0800</pubDate>
-    <lastBuildDate>Tue, 03 Jan 2017 10:35:42 +0800</lastBuildDate>
+    <link>https://swtheing.github.io/swtheking.github.io//</link>
+    <atom:link href="https://swtheing.github.io/swtheking.github.io//feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 03 Jan 2017 11:48:52 +0800</pubDate>
+    <lastBuildDate>Tue, 03 Jan 2017 11:48:52 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -261,8 +261,8 @@
 &lt;/div&gt;
 </description>
         <pubDate>Sun, 01 Jan 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/01/01/PolicyGradient-2017/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/01/01/PolicyGradient-2017/</guid>
+        <link>https://swtheing.github.io/swtheking.github.io//2017/01/01/PolicyGradient-2017/</link>
+        <guid isPermaLink="true">https://swtheing.github.io/swtheking.github.io//2017/01/01/PolicyGradient-2017/</guid>
         
         <category>Deep Reinforcement Learning</category>
         
@@ -314,8 +314,8 @@
 
 </description>
         <pubDate>Sun, 01 Jan 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/01/01/hello-2015/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/01/01/hello-2015/</guid>
+        <link>https://swtheing.github.io/swtheking.github.io//2017/01/01/hello-2015/</link>
+        <guid isPermaLink="true">https://swtheing.github.io/swtheking.github.io//2017/01/01/hello-2015/</guid>
         
         <category>生活</category>
         
