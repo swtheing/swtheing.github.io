@@ -5,8 +5,8 @@
     <description>一个关乎于深度学习的故事，一颗期许罗曼蒂克的内心，一位篮球界的地板流选手，一名非专业的脱口秀演员</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 27 Jan 2017 23:29:19 +0800</pubDate>
-    <lastBuildDate>Fri, 27 Jan 2017 23:29:19 +0800</lastBuildDate>
+    <pubDate>Sat, 28 Jan 2017 21:43:10 +0800</pubDate>
+    <lastBuildDate>Sat, 28 Jan 2017 21:43:10 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -15,24 +15,24 @@
   &lt;p&gt;“用二进制的眼光看世界，似乎有点深邃，似乎又有点简单。”&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;##什么是Deep Q Learning ？&lt;/p&gt;
+&lt;h1 id=&quot;什么是deep-q-learning-&quot;&gt;什么是Deep Q Learning ？&lt;/h1&gt;
 
 &lt;p&gt;Deep Q Learning 是一个数学公式很复杂，但道理太简单的学习。
-在看本篇内容前，请先阅读 Google 的关于DQN的ppt，&lt;a href=&quot;http://www.iclr.cc/lib/exe/fetch.php?media=iclr2015:silver-iclr2015.pdf&quot;&gt;Deep Reinforcement Learning. David Silver, Google DeepMind&lt;/a&gt;，数学部分不需要特别看懂。
-###走别人走过的路
-首先我们解释下什么是，Q Learning：&lt;/p&gt;
+在看本篇内容前，请先阅读 Google 的关于DQN的ppt，&lt;a href=&quot;http://www.iclr.cc/lib/exe/fetch.php?media=iclr2015:silver-iclr2015.pdf&quot;&gt;Deep Reinforcement Learning. David Silver, Google DeepMind&lt;/a&gt;，数学部分不需要特别看懂。&lt;/p&gt;
+&lt;h2 id=&quot;走别人走过的路&quot;&gt;走别人走过的路&lt;/h2&gt;
+&lt;p&gt;首先我们解释下什么是，Q Learning：&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;Q_{i+1}(s,a) = E[r + \theta \max_{a'}Q_i(s',a')|s,a]&lt;/script&gt;
 
-&lt;p&gt;这个公式其实很容易理解，它就是说，第i轮的value，&lt;script type=&quot;math/tex&quot;&gt;Q(s,a)&lt;/script&gt;和第i+1轮的&lt;script type=&quot;math/tex&quot;&gt;Q(s',a')&lt;/script&gt;的关系，也就是当前利益&lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt;加上未来最大利益&lt;script type=&quot;math/tex&quot;&gt;\max_{a'}Q_i(s',a')&lt;/script&gt;乘以一个折扣&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;(为什么用折扣&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;,大家可以看看经济学书，因为我们总是对未来利益打折计算的)。其实这个过程就是第i个人帮你走过一段路，他总结了这段路上所得所失，你作为第i+1个人就会避免他走过的错路，就会期望走他走的对的路。所以每一个i+1都是站在i的人的肩膀上走路。
-###有点探索精神，Exploiting or Exploring
-走别人走过的路很简单，但是似乎世界需要探索。如果你不设置探索，很多时候未知的路就走不出来，未知的美就探索不到。其实用数学的语言就是，你会陷入一个局部最优，而不是全局最优。所以我们经常会讨论我们该花多少概率探索未知，花多少时间挖掘已知。
-###Deep：为了找到“似曾相识”的路
-其实，一直以来，Q Learning唯一可以炫耀的其实是数学上收敛这个性质，应该是&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+&lt;p&gt;这个公式其实很容易理解，它就是说，第i轮的value，&lt;script type=&quot;math/tex&quot;&gt;Q(s,a)&lt;/script&gt;和第i+1轮的&lt;script type=&quot;math/tex&quot;&gt;Q(s',a')&lt;/script&gt;的关系，也就是当前利益&lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt;加上未来最大利益&lt;script type=&quot;math/tex&quot;&gt;\max_{a'}Q_i(s',a')&lt;/script&gt;乘以一个折扣&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;(为什么用折扣&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;,大家可以看看经济学书，因为我们总是对未来利益打折计算的)。其实这个过程就是第i个人帮你走过一段路，他总结了这段路上所得所失，你作为第i+1个人就会避免他走过的错路，就会期望走他走的对的路。所以每一个i+1都是站在i的人的肩膀上走路。&lt;/p&gt;
+&lt;h2 id=&quot;有点探索精神exploiting-or-exploring&quot;&gt;有点探索精神，Exploiting or Exploring&lt;/h2&gt;
+&lt;p&gt;走别人走过的路很简单，但是似乎世界需要探索。如果你不设置探索，很多时候未知的路就走不出来，未知的美就探索不到。其实用数学的语言就是，你会陷入一个局部最优，而不是全局最优。所以我们经常会讨论我们该花多少概率探索未知，花多少时间挖掘已知。&lt;/p&gt;
+&lt;h2 id=&quot;deep为了找到似曾相识的路&quot;&gt;Deep：为了找到“似曾相识”的路&lt;/h2&gt;
+&lt;p&gt;其实，一直以来，Q Learning唯一可以炫耀的其实是数学上收敛这个性质，应该是&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
 \theta &lt; 1 %]]&gt;&lt;/script&gt;的原因吧。其实Q Learning就是个暴力搜索。&lt;/p&gt;
 
-&lt;p&gt;那么为什么在引入Deep以后火起来了呢，因为Deep可以记住很像的图像。Deep的本质是感知，就是能看出来所谓很像的东西，感觉人的语气，感情，这就是Deep的好处。而且Deep处理的越好，收敛速度越快，因为“举一反三”。
-##代码解读&lt;/p&gt;
+&lt;p&gt;那么为什么在引入Deep以后火起来了呢，因为Deep可以记住很像的图像。Deep的本质是感知，就是能看出来所谓很像的东西，感觉人的语气，感情，这就是Deep的好处。而且Deep处理的越好，收敛速度越快，因为“举一反三”。&lt;/p&gt;
+&lt;h1 id=&quot;代码解读&quot;&gt;代码解读&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;深度网络, 输入是上篇文章的prepro函数处理过的图片，当然如果换成cnn应该训练速度会增加，输出是每一个action的预估Q值。&lt;/li&gt;
 &lt;/ul&gt;
@@ -88,66 +88,13 @@
       </item>
     
       <item>
-        <title>Hello 2017</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;引言&quot;&gt;引言&lt;/h2&gt;
-
-&lt;p&gt;S&amp;amp;W， 一个非典型的审美主义者的博客破壳而出。&lt;/p&gt;
-
-&lt;p&gt;什么是审美主义者，什么是非典型的审美主义者，什么是S&amp;amp;W，S&amp;amp;W是做什么的？？？？&lt;/p&gt;
-
-&lt;p id=&quot;build&quot;&gt;&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;正文&quot;&gt;正文&lt;/h2&gt;
-&lt;h3 id=&quot;审美aesthetic&quot;&gt;审美，Aesthetic&lt;/h3&gt;
-&lt;p&gt;“一个女人因为一个男人的样貌而喜欢他，叫好色，&lt;/p&gt;
-
-&lt;p&gt;一个男人因为一个女人的样貌而喜欢她，叫审美。”&lt;/p&gt;
-
-&lt;p&gt;一个爱好审美的计算机程序员；没有创造美的能力，却还有些审视美的癖好；没有研究过随机算法，却还能分得清蒙特卡洛和拉斯维加斯，没学过深度学习，却有点深度的机器学习学者，这就是我，S&amp;amp;W，一个人工智能界的小学生。
-###主义，-Ism
-“少谈点主义，多谈点问题。”&lt;/p&gt;
-
-&lt;p&gt;一个有点主意，又有点主义的人。喜欢大佬，喜欢Jobs，Gates；喜欢Geek，喜欢Musk，喜欢Mark；也喜欢伟人，喜欢润之，喜欢蛤蛤。有主意易，有主义难，有主义易，坚持主义难。虽然喜欢主义，喜欢谈主义，但骨子里鄙视那些只谈主义，却无主意之人。一个每谈一次主义，就会拿几个问题来解决解决的人。
-###者，-Ist
-“侠之大者，为国为民。”
-者，是之乎者也的者，没啥意思，放在后面，逼格挺高。
-###非典型，Atypia
-“Atypia, not SARS.”&lt;/p&gt;
-
-&lt;p&gt;相比于典型的，不那么典型，相比于不典型的，有点典型。&lt;/p&gt;
-
-&lt;h2 id=&quot;后记&quot;&gt;后记&lt;/h2&gt;
-
-&lt;h3 id=&quot;why-sw&quot;&gt;Why S&amp;amp;W&lt;/h3&gt;
-&lt;p&gt;很害怕人问，你为什么叫S&amp;amp;W，&amp;amp;是什么意思，那我只能回答，“啊？”。&lt;/p&gt;
-
-&lt;p&gt;你难道不觉得，SW感觉放在首页太空了？&lt;/p&gt;
-
-&lt;p&gt;如果你愿意，可以叫我，S#W，S%W，S*W，但千万别叫SBW，感觉不太文雅。&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 01 Jan 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/01/01/hello-2017/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/01/01/hello-2017/</guid>
-        
-        <category>生活</category>
-        
-        
-      </item>
-    
-      <item>
         <title>Policy Gradient in Pong Game</title>
         <description>&lt;blockquote&gt;
   &lt;p&gt;“我听过两个关于罗曼蒂克的故事，一个发生在上海，另一个也发生在上海。”&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;##什么是Deep Reinforcement Learning ？
-Deep Reinforce Learning可以从下面几个资料中获得，&lt;/p&gt;
+&lt;h2 id=&quot;deep-reinforcement-learning&quot;&gt;Deep Reinforcement Learning&lt;/h2&gt;
+&lt;p&gt;Deep Reinforce Learning可以从下面几个资料中获得，&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://webdocs.cs.ualberta.ca/~sutton/book/the-book.html&quot;&gt;Reinforcement Learning: An Introduction. Richard S. Sutton and Andrew G. Barto&lt;/a&gt;，这本书可以说是整个Reinforcement Learning最权威的书籍，尤其第二版加入了很多关于Deep的东西。&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.iclr.cc/lib/exe/fetch.php?media=iclr2015:silver-iclr2015.pdf&quot;&gt;Deep Reinforcement Learning. David Silver, Google DeepMind&lt;/a&gt;，这是DeepMind一个ppt主要讲的是Deep Q-Network。&lt;/li&gt;
@@ -392,11 +339,64 @@ Deep Reinforce Learning可以从下面几个资料中获得，&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Sun, 01 Jan 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/01/01/PolicyGradient-2017/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/01/01/PolicyGradient-2017/</guid>
+        <pubDate>Mon, 02 Jan 2017 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/01/02/PolicyGradient-2017/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/01/02/PolicyGradient-2017/</guid>
         
         <category>Deep Reinforcement Learning</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Hello 2017</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;引言&quot;&gt;引言&lt;/h2&gt;
+
+&lt;p&gt;S&amp;amp;W， 一个非典型的审美主义者的博客破壳而出。&lt;/p&gt;
+
+&lt;p&gt;什么是审美主义者，什么是非典型的审美主义者，什么是S&amp;amp;W，S&amp;amp;W是做什么的？？？？&lt;/p&gt;
+
+&lt;p id=&quot;build&quot;&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;正文&quot;&gt;正文&lt;/h2&gt;
+&lt;h3 id=&quot;审美aesthetic&quot;&gt;审美，Aesthetic&lt;/h3&gt;
+&lt;p&gt;“一个女人因为一个男人的样貌而喜欢他，叫好色，&lt;/p&gt;
+
+&lt;p&gt;一个男人因为一个女人的样貌而喜欢她，叫审美。”&lt;/p&gt;
+
+&lt;p&gt;一个爱好审美的计算机程序员；没有创造美的能力，却还有些审视美的癖好；没有研究过随机算法，却还能分得清蒙特卡洛和拉斯维加斯，没学过深度学习，却有点深度的机器学习学者，这就是我，S&amp;amp;W，一个人工智能界的小学生。
+###主义，-Ism
+“少谈点主义，多谈点问题。”&lt;/p&gt;
+
+&lt;p&gt;一个有点主意，又有点主义的人。喜欢大佬，喜欢Jobs，Gates；喜欢Geek，喜欢Musk，喜欢Mark；也喜欢伟人，喜欢润之，喜欢蛤蛤。有主意易，有主义难，有主义易，坚持主义难。虽然喜欢主义，喜欢谈主义，但骨子里鄙视那些只谈主义，却无主意之人。一个每谈一次主义，就会拿几个问题来解决解决的人。
+###者，-Ist
+“侠之大者，为国为民。”
+者，是之乎者也的者，没啥意思，放在后面，逼格挺高。
+###非典型，Atypia
+“Atypia, not SARS.”&lt;/p&gt;
+
+&lt;p&gt;相比于典型的，不那么典型，相比于不典型的，有点典型。&lt;/p&gt;
+
+&lt;h2 id=&quot;后记&quot;&gt;后记&lt;/h2&gt;
+
+&lt;h3 id=&quot;why-sw&quot;&gt;Why S&amp;amp;W&lt;/h3&gt;
+&lt;p&gt;很害怕人问，你为什么叫S&amp;amp;W，&amp;amp;是什么意思，那我只能回答，“啊？”。&lt;/p&gt;
+
+&lt;p&gt;你难道不觉得，SW感觉放在首页太空了？&lt;/p&gt;
+
+&lt;p&gt;如果你愿意，可以叫我，S#W，S%W，S*W，但千万别叫SBW，感觉不太文雅。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 01 Jan 2017 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/01/01/hello-2017/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/01/01/hello-2017/</guid>
+        
+        <category>生活</category>
         
         
       </item>

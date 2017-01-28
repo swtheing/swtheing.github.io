@@ -4,7 +4,7 @@ title:      "Hello 2017"
 subtitle:   " \"Hello World, Hello Blog, Hello a New Trip\""
 date:       2017-01-01 12:00:00
 author:     "S&W"
-header-img: "img/post-bg-2015.jpg"
+header-img: "img/post-home-bg-2017.jpg"
 catalog: true
 tags:
     - 生活
