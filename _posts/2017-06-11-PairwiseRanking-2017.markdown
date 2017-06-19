@@ -7,7 +7,7 @@ author:     "S&W"
 header-img: "img/post-pwintro-2017.jpg"
 catalog: true
 tags:
-    - Learn to Rank，PairwiseRanking的专题。
+    - PairwiseRanking的专题。
 ---
 
 > "每当我想批评别人的时候，我父亲总对我说，要记住，这世上并不是所有人，都有我拥有的那些优势。"
