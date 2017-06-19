@@ -10,7 +10,7 @@
     <meta name="keywords"  content="S&W, 沈炜，炜，2009，DQN，Deep Reinforcement Learning，NLP">
     <meta name="theme-color" content="#000000">
     
-    <title>Hello 2017 - 沈炜的博客 | S&W Blog</title>
+    <title>PairwiseRanking的介绍 - 沈炜的博客 | S&W Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2017/01/01/hello-2017/">
+    <link rel="canonical" href="http://localhost:4000/2017/06/11/PairwiseRanking-2017/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -170,13 +170,13 @@ MathJax.Hub.Config({
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-home-bg-2017.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-deepq-2017.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-home-bg-2017.jpg')
+        background-image: url('/img/post-deepq-2017.jpg')
     }
 
     
@@ -189,15 +189,15 @@ MathJax.Hub.Config({
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#生活" title="生活">生活</a>
+                        <a class="tag" href="/tags/#Learn to Rank，PairwiseRanking的专题。" title="Learn to Rank，PairwiseRanking的专题。">Learn to Rank，PairwiseRanking的专题。</a>
                         
                     </div>
-                    <h1>Hello 2017</h1>
+                    <h1>PairwiseRanking的介绍</h1>
                     
                     
-                    <h2 class="subheading"> "Hello World, Hello Blog, Hello a New Trip"</h2>
+                    <h2 class="subheading"> "This is a tool in L2R"</h2>
                     
-                    <span class="meta">Posted by S&W on January 1, 2017</span>
+                    <span class="meta">Posted by S&W on June 11, 2017</span>
                 </div>
             </div>
         </div>
@@ -216,45 +216,71 @@ MathJax.Hub.Config({
                 post-container">
 
 				<blockquote>
-  <p>“Yeah It’s on. ”</p>
+  <p>“每当我想批评别人的时候，我父亲总对我说，要记住，这世上并不是所有人，都有我拥有的那些优势。”</p>
 </blockquote>
 
-<h2 id="引言">引言</h2>
+<h1 id="什么是pairwise-ranking">什么是Pairwise Ranking？</h1>
 
-<p>S&amp;W， 一个非典型的审美主义者的博客破壳而出。</p>
+<p>Pairwise Ranking是Learning to Rank(L2R)的一种方式。其中Ranking是一种在很多应用中需要解决的问题，比如，搜索文件，推荐系统，机器翻译等。那么在下面章节中，我们将首先描述一下Rank 和Learning to Rank方法；然后介绍其中比较著名的方法，Pairwise Ranking；最后介绍一下我在搜狐图文匹配大赛中使用Tensorflow编写的PairwiseRanking的方法和效果。</p>
 
-<p>什么是审美主义者，什么是非典型的审美主义者，什么是S&amp;W，S&amp;W是做什么的？？？？</p>
+<h2 id="learning-to-rank">Learning To Rank</h2>
 
-<p id="build"></p>
-<hr />
+<p>Learning To Rank的定义：machine learning technology for ranking creation and ranking aggregation：</p>
 
-<h2 id="正文">正文</h2>
-<h3 id="审美aesthetic">审美，Aesthetic</h3>
-<p>“一个女人因为一个男人的样貌而喜欢他，叫好色，</p>
+<ol>
+  <li>ranking creation: 基于一个query和一系列的候选集，对于基于这个query的相关度，对这个候选集合排序。其中，有全局排序模型以及局部排序模型。一般而言，使用局部排序模型居多，监督学习居多。</li>
+  <li>ranking aggregation: 基于多个已经排好序的偏序关系生成一个全序。一般使用全局排序模型，监督学习和无监督学习模型都存在。</li>
+</ol>
 
-<p>一个男人因为一个女人的样貌而喜欢她，叫审美。”</p>
+<h3 id="技巧">技巧</h3>
+<ol>
+  <li>方法：pointwise，pairwise，listwise的方法。</li>
+  <li>理论：Generalization，Consistency。</li>
+  <li>应用：Search，Collaborative Filtering，Key Phrase Extraction。</li>
+</ol>
 
-<p>一个爱好审美的计算机程序员；没有创造美的能力，却还有些审视美的癖好；没有研究过随机算法，却还能分得清蒙特卡洛和拉斯维加斯，没学过深度学习，却有点深度的机器学习学者，这就是我，S&amp;W，一个人工智能界的小学生。
-###主义，-Ism
-“少谈点主义，多谈点问题。”</p>
+<p>###主要研究问题</p>
+<ol>
+  <li>数据标记：利用相关程度做标记；利用排序序列做标记；利用整个序列的顺序做标记（极少数）。</li>
+  <li>特征工程：深度提取，一些标准提取。</li>
+  <li>评价方法：NDCG (Normalized Discounted Cumulative Gain)，MAP (Mean Average Precision)，MRR (Mean Reciprocal Rank)，WTA (Winners Take All)，Kendall’s Tau。</li>
+  <li>学习算法：SVM-based, Boosting-based, Neural Network-based, Others.</li>
+</ol>
 
-<p>一个有点主意，又有点主义的人。喜欢大佬，喜欢Jobs，Gates；喜欢Geek，喜欢Musk，喜欢Mark；也喜欢伟人，喜欢润之，喜欢蛤蛤。有主意易，有主义难，有主义易，坚持主义难。虽然喜欢主义，喜欢谈主义，但骨子里鄙视那些只谈主义，却无主意之人。一个每谈一次主义，就会拿几个问题来解决解决的人。
-###者，-Ist
-“侠之大者，为国为民。”
-者，是之乎者也的者，没啥意思，放在后面，逼格挺高。
-###非典型，Atypia
-“Atypia, not SARS.”</p>
+<p>##Pairwise Ranking</p>
+<ol>
+  <li>将ranking转成Pairwise 分类：给予任意一个配对(x1，x2)，输出
+f(x1) - f(x2)。学习器就是学习函数f(x)。</li>
+  <li>优势：相比于pointwise直接学习一个函数f(x)属于一个监督学习，其中，如果没有人为对每个x标注具体值，那么f(x)有可能出现样本不均衡状况，也就是负例太多的问题。而当使用pairwise的方法以后可以解决这类问题。</li>
+  <li>劣势：并没有利用到query-document对的结构关系。</li>
+  <li>关于这三种方法的一些结论：1）Pairwise以及listwise的方法比pointwise效果好，2）LabmdaMART现有阶段是公认比较好的方法（这是以前的一个共识，但是自从DNN被引入以后，类似于百度的Simnet和IRGAN都在某些数据集上拥有更好的表现），3）Pairwise和listwise没有特别的效果区别。</li>
+</ol>
 
-<p>相比于典型的，不那么典型，相比于不典型的，有点典型。</p>
+<h2 id="simnet模型">Simnet模型</h2>
+<p>###简单介绍
+   这是我在百度NLP部实习学到的主要模型，这个模型被广泛利用在大搜，度秘以及广告等业务上。本来并不准备展现出来，但是百度NLP组已经将其技术发布在机器之心上,<a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650727938&amp;idx=3&amp;sn=c0f0479d3edc4ca07cd2cec16be830bd&amp;chksm=871b227cb06cab6af4f2f3c1aa405a12733d95d090c55d10753240facdbdea2d8767e08962eb&amp;mpshare=1&amp;scene=1&amp;srcid=0615Z8RrrVK6msstXZcPhjVY&amp;key=227c90f337be412a6384bdda58f606ec845987b98855fde3fde65e6fabaeeefbd3f741bbb8ac5f46bf20ab9d1c959e9f05024c1defb01296591b65b9323ef2da51a436780b22edb04bb31fc2023369d0&amp;ascene=0&amp;uin=ODcyOTEwNjYw&amp;devicetype=iMac+MacBookPro13%2C1+OSX+OSX+10.12+build(16A2323a)&amp;version=12020810&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=tRRZU9r72M2vJDTRV%2BtpkBra3haXN0qOIhcDTxttcyQzhULNlEBgidR48k7bTgUV">百度NLP|神经网络语义匹配技术</a>，我在此利用自己的理解对其进行一定的补充。
+   首先Simnet是一个End-to-End模型，所谓End-to-End就是它本质上是由多个层次组成，但是每个层次是有关联的，所以我们利用深度学习的方式不仅学习了每一层的参数，关键是学习到的是一个整体，是一个关系。换句话说，如果这些层次单独抽出来，一定没有它们在系统中表现的好。比较有特点的就是word-embedding这个层次，这是simnet在不同任务下都会训练出来的层次，但对于同样的文本不同任务的word-embeeding的结果并不相同。
+   其次，Simnet是一个Pairwise Ranking的模型，在抽取出x1，x2的feature层以后，学习f(x),输出是f(x1) - f(x2)。
+   第三，Simnet是一个基于SVM的模型，因为它的loss是Hinge Loss。
+   最后，Simnet是一个融合模型，它对词和字粒度的模型进行融合，对表示方法可以融合比如LSTM，RNN，CNN以及BOW等。</p>
 
-<h2 id="后记">后记</h2>
+<p>###模型
+  该模型是由表示模块，评估模块和损失模块等组成。那么，下面图片是一个Simnet模型的具化表现形式，
+<img src="/img/in-post/simnet_2017_06.png" alt="Simnet的一个表现形式" /></p>
 
-<h3 id="why-sw">Why S&amp;W</h3>
-<p>很害怕人问，你为什么叫S&amp;W，&amp;是什么意思，那我只能回答，“啊？”。</p>
+<p>其中输入层是一个典型的Pairwise的三元组(Pos, Query, Neg)，在Measurement Layer之前，都是表示模块，其中这里的表示模块就是简单的BOW。在进入Measurement的之前，所有Pos，Query，Neg都被影射到一个256维的空间里，在这个空间中我们希望Pos向量能和Query向量夹角越小越好，而Query和Neg的夹角越小越好。因此我们使用了cos做度量函数，HingeLoss做Loss函数。</p>
 
-<p>你难道不觉得，SW感觉放在首页太空了？</p>
+<p>###应用和变形</p>
+<ol>
+  <li>应用方面，在对话系统中，Query就是提问，Pos就是回答，Neg是随机选择的一句话。在搜索中，Query就是搜索问题，Pos就是被点击的文档，Neg就是未被点击的文档。</li>
+  <li>变形方面，对于表示层的改变，其中有利用LSTM，RNN，CNN对其表示形式改变，对于评估模块，使用海明距会提高整个计算速度和降低计算复杂度。</li>
+</ol>
 
-<p>如果你愿意，可以叫我，S#W，S%W，S*W，但千万别叫SBW，感觉不太文雅。</p>
+<p>##PairwiseRanking的具体应用</p>
+<ol>
+  <li>搜狐比赛中使用Tensorflow写的PairwiseRanking。</li>
+  <li>知乎比赛中使用Keras写的PairwiseRanking。</li>
+</ol>
 
 
 
@@ -264,19 +290,17 @@ MathJax.Hub.Config({
                 <!-- 多说 Share start -->
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2017/01/01/hello-2017"
-                    data-title="Hello 2017"
-                    data-url="http://localhost:4000/2017/01/01/hello-2017/"
-                    data-images="http://localhost:4000/img/post-home-bg-2017.jpg"
+                    data-thread-key="/2017/06/11/PairwiseRanking-2017"
+                    data-title="PairwiseRanking的介绍"
+                    data-url="http://localhost:4000/2017/06/11/PairwiseRanking-2017/"
+                    data-images="http://localhost:4000/img/post-deepq-2017.jpg"
                     data-content="
-  “Yeah It’s on. ”
+  “每当我想批评别人的时候，我父亲总对我说，要记住，这世上并不是所有人，都有我拥有的那些优势。”
 
 
-引言
+什么是Pairwise Ranking？
 
-S&amp;W， 一个非典型的审美主义者的博客破壳而出。
-
-什么是审美主义者，什么是非典型的审美主义者... | 沈炜的博客 | S&W Blog " >
+Pa... | 沈炜的博客 | S&W Blog " >
                     <div class="ds-share-inline">
                       <style> 
                         .ds-share-icons-16 {display:none;} 
@@ -298,13 +322,13 @@ S&amp;W， 一个非典型的审美主义者的博客破壳而出。
 
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/2017/01/02/PolicyGradient-2017/" data-toggle="tooltip" data-placement="top" title="Policy Gradient in Pong Game">
-                        Next<br>
-                        <span>Policy Gradient in Pong Game</span>
+                    <li class="previous">
+                        <a href="/2017/01/20/DeepQLearning-2017/" data-toggle="tooltip" data-placement="top" title="Deep Q Learning in Pong Game">
+                        Previous<br>
+                        <span>Deep Q Learning in Pong Game</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
@@ -313,9 +337,9 @@ S&amp;W， 一个非典型的审美主义者的博客破壳而出。
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2017/01/01/hello-2017"
-                        data-title="Hello 2017"
-                        data-url="http://localhost:4000/2017/01/01/hello-2017/" >
+                        data-thread-key="/2017/06/11/PairwiseRanking-2017"
+                        data-title="PairwiseRanking的介绍"
+                        data-url="http://localhost:4000/2017/06/11/PairwiseRanking-2017/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->

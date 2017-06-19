@@ -220,23 +220,40 @@ MathJax.Hub.Config({
 </blockquote>
 
 <h2 id="deep-reinforcement-learning">Deep Reinforcement Learning</h2>
+
 <p>Deep Reinforce Learning可以从下面几个资料中获得，</p>
+
 <ul>
-  <li><a href="https://webdocs.cs.ualberta.ca/~sutton/book/the-book.html">Reinforcement Learning: An Introduction. Richard S. Sutton and Andrew G. Barto</a>，这本书可以说是整个Reinforcement Learning最权威的书籍，尤其第二版加入了很多关于Deep的东西。</li>
-  <li><a href="http://www.iclr.cc/lib/exe/fetch.php?media=iclr2015:silver-iclr2015.pdf">Deep Reinforcement Learning. David Silver, Google DeepMind</a>，这是DeepMind一个ppt主要讲的是Deep Q-Network。</li>
-  <li><a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html">UCL的一个关于Deep Reinforcement Learning的课程</a>。</li>
-  <li><a href="http://karpathy.github.io/2016/05/31/rl/">Policy Gradient Tutoiral</a>，本文的代码以及解释来源于此。</li>
+  <li>
+    <p><a href="https://webdocs.cs.ualberta.ca/~sutton/book/the-book.html">Reinforcement Learning: An Introduction. Richard S. Sutton and Andrew G. Barto</a>，这本书可以说是整个Reinforcement Learning最权威的书籍，尤其第二版加入了很多关于Deep的东西。</p>
+  </li>
+  <li>
+    <p><a href="http://www.iclr.cc/lib/exe/fetch.php?media=iclr2015:silver-iclr2015.pdf">Deep Reinforcement Learning. David Silver, Google DeepMind</a>，这是DeepMind一个ppt主要讲的是Deep Q-Network。</p>
+  </li>
+  <li>
+    <p><a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html">UCL的一个关于Deep Reinforcement Learning的课程</a>。</p>
+  </li>
+  <li>
+    <p><a href="http://karpathy.github.io/2016/05/31/rl/">Policy Gradient Tutoiral</a>，本文的代码以及解释来源于此。</p>
+  </li>
 </ul>
 
 <h2 id="policy-gradient">Policy Gradient</h2>
+
 <h3 id="what-is-policy-gradient">what is policy gradient</h3>
+
 <p>在笔者看来，Policy Gradient是对于一个Policy的求导，也就是对于一个映射函数（state -&gt; action）的求导。</p>
+
 <h3 id="why-policy-gradient">why policy gradient</h3>
+
 <p>Policy Gradient的出现是因为Deep Learning的出现，否则，怎么会有人想到为一个Policy函数求Gradient呢。相比于Deep Q-learning，Policy Gradient更容易实现，也更容易做BP，如果想了解细节，请看<a href="http://karpathy.github.io/2016/05/31/rl/">Policy Gradient Tutoiral</a>。</p>
+
 <h3 id="loss-of-policy-gradient">Loss of Policy Gradient</h3>
+
 <p>其实Policy Gradient的Loss是Log Loss，也就是Cross Entropy，但是有一个trick的地方是，Cross Entropy计算出的gradient的只是一个方向，它的值需要再乘以discount reward，具体数学可以看<a href="http://karpathy.github.io/2016/05/31/rl/">Policy Gradient Tutoiral</a>，代码部分解释可以看下面。</p>
 
 <h2 id="代码解读"><a href="https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5">代码解读</a></h2>
+
 <ul>
   <li>observation 代码，<code class="highlighter-rouge">prepro(I)</code>函数中，做了一些剔除背景的操作。</li>
 </ul>
@@ -314,6 +331,7 @@ MathJax.Hub.Config({
 </div>
 
 <h2 id="policy-gradient-in-pong-game-with-tensorflow">Policy Gradient in Pong Game with Tensorflow</h2>
+
 <p>这段代码是我根据网上一个人的代码改写的，他写的代码虽然说是Policy Gradient，但实际只用了L2的loss，其实是错误的。</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">numpy</span> <span class="nx">as</span> <span class="nx">np</span>
@@ -481,7 +499,8 @@ MathJax.Hub.Config({
 
 
 Deep Reinforcement Learning
-Deep Rei... | 沈炜的博客 | S&W Blog " >
+
+Deep Re... | 沈炜的博客 | S&W Blog " >
                     <div class="ds-share-inline">
                       <style> 
                         .ds-share-icons-16 {display:none;} 
@@ -573,6 +592,8 @@ Deep Rei... | 沈炜的博客 | S&W Blog " >
                 				<a href="/tags/#Deep Reinforcement Learning" title="Deep Reinforcement Learning" rel="2">
                                     Deep Reinforcement Learning
                                 </a>
+                            
+        				
                             
         				
         			</div>

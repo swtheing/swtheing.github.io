@@ -5,9 +5,88 @@
     <description>一个关乎于深度学习的故事，一颗期许罗曼蒂克的内心，一位篮球界的地板流选手，一名非专业的脱口秀演员</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 28 Jan 2017 23:18:14 +0800</pubDate>
-    <lastBuildDate>Sat, 28 Jan 2017 23:18:14 +0800</lastBuildDate>
+    <pubDate>Mon, 19 Jun 2017 10:42:57 +0800</pubDate>
+    <lastBuildDate>Mon, 19 Jun 2017 10:42:57 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>PairwiseRanking的介绍</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“每当我想批评别人的时候，我父亲总对我说，要记住，这世上并不是所有人，都有我拥有的那些优势。”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;什么是pairwise-ranking&quot;&gt;什么是Pairwise Ranking？&lt;/h1&gt;
+
+&lt;p&gt;Pairwise Ranking是Learning to Rank(L2R)的一种方式。其中Ranking是一种在很多应用中需要解决的问题，比如，搜索文件，推荐系统，机器翻译等。那么在下面章节中，我们将首先描述一下Rank 和Learning to Rank方法；然后介绍其中比较著名的方法，Pairwise Ranking；最后介绍一下我在搜狐图文匹配大赛中使用Tensorflow编写的PairwiseRanking的方法和效果。&lt;/p&gt;
+
+&lt;h2 id=&quot;learning-to-rank&quot;&gt;Learning To Rank&lt;/h2&gt;
+
+&lt;p&gt;Learning To Rank的定义：machine learning technology for ranking creation and ranking aggregation：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;ranking creation: 基于一个query和一系列的候选集，对于基于这个query的相关度，对这个候选集合排序。其中，有全局排序模型以及局部排序模型。一般而言，使用局部排序模型居多，监督学习居多。&lt;/li&gt;
+  &lt;li&gt;ranking aggregation: 基于多个已经排好序的偏序关系生成一个全序。一般使用全局排序模型，监督学习和无监督学习模型都存在。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;技巧&quot;&gt;技巧&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;方法：pointwise，pairwise，listwise的方法。&lt;/li&gt;
+  &lt;li&gt;理论：Generalization，Consistency。&lt;/li&gt;
+  &lt;li&gt;应用：Search，Collaborative Filtering，Key Phrase Extraction。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;###主要研究问题&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;数据标记：利用相关程度做标记；利用排序序列做标记；利用整个序列的顺序做标记（极少数）。&lt;/li&gt;
+  &lt;li&gt;特征工程：深度提取，一些标准提取。&lt;/li&gt;
+  &lt;li&gt;评价方法：NDCG (Normalized Discounted Cumulative Gain)，MAP (Mean Average Precision)，MRR (Mean Reciprocal Rank)，WTA (Winners Take All)，Kendall’s Tau。&lt;/li&gt;
+  &lt;li&gt;学习算法：SVM-based, Boosting-based, Neural Network-based, Others.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;##Pairwise Ranking&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;将ranking转成Pairwise 分类：给予任意一个配对(x1，x2)，输出
+f(x1) - f(x2)。学习器就是学习函数f(x)。&lt;/li&gt;
+  &lt;li&gt;优势：相比于pointwise直接学习一个函数f(x)属于一个监督学习，其中，如果没有人为对每个x标注具体值，那么f(x)有可能出现样本不均衡状况，也就是负例太多的问题。而当使用pairwise的方法以后可以解决这类问题。&lt;/li&gt;
+  &lt;li&gt;劣势：并没有利用到query-document对的结构关系。&lt;/li&gt;
+  &lt;li&gt;关于这三种方法的一些结论：1）Pairwise以及listwise的方法比pointwise效果好，2）LabmdaMART现有阶段是公认比较好的方法（这是以前的一个共识，但是自从DNN被引入以后，类似于百度的Simnet和IRGAN都在某些数据集上拥有更好的表现），3）Pairwise和listwise没有特别的效果区别。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;simnet模型&quot;&gt;Simnet模型&lt;/h2&gt;
+&lt;p&gt;###简单介绍
+   这是我在百度NLP部实习学到的主要模型，这个模型被广泛利用在大搜，度秘以及广告等业务上。本来并不准备展现出来，但是百度NLP组已经将其技术发布在机器之心上,&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2650727938&amp;amp;idx=3&amp;amp;sn=c0f0479d3edc4ca07cd2cec16be830bd&amp;amp;chksm=871b227cb06cab6af4f2f3c1aa405a12733d95d090c55d10753240facdbdea2d8767e08962eb&amp;amp;mpshare=1&amp;amp;scene=1&amp;amp;srcid=0615Z8RrrVK6msstXZcPhjVY&amp;amp;key=227c90f337be412a6384bdda58f606ec845987b98855fde3fde65e6fabaeeefbd3f741bbb8ac5f46bf20ab9d1c959e9f05024c1defb01296591b65b9323ef2da51a436780b22edb04bb31fc2023369d0&amp;amp;ascene=0&amp;amp;uin=ODcyOTEwNjYw&amp;amp;devicetype=iMac+MacBookPro13%2C1+OSX+OSX+10.12+build(16A2323a)&amp;amp;version=12020810&amp;amp;nettype=WIFI&amp;amp;fontScale=100&amp;amp;pass_ticket=tRRZU9r72M2vJDTRV%2BtpkBra3haXN0qOIhcDTxttcyQzhULNlEBgidR48k7bTgUV&quot;&gt;百度NLP|神经网络语义匹配技术&lt;/a&gt;，我在此利用自己的理解对其进行一定的补充。
+   首先Simnet是一个End-to-End模型，所谓End-to-End就是它本质上是由多个层次组成，但是每个层次是有关联的，所以我们利用深度学习的方式不仅学习了每一层的参数，关键是学习到的是一个整体，是一个关系。换句话说，如果这些层次单独抽出来，一定没有它们在系统中表现的好。比较有特点的就是word-embedding这个层次，这是simnet在不同任务下都会训练出来的层次，但对于同样的文本不同任务的word-embeeding的结果并不相同。
+   其次，Simnet是一个Pairwise Ranking的模型，在抽取出x1，x2的feature层以后，学习f(x),输出是f(x1) - f(x2)。
+   第三，Simnet是一个基于SVM的模型，因为它的loss是Hinge Loss。
+   最后，Simnet是一个融合模型，它对词和字粒度的模型进行融合，对表示方法可以融合比如LSTM，RNN，CNN以及BOW等。&lt;/p&gt;
+
+&lt;p&gt;###模型
+  该模型是由表示模块，评估模块和损失模块等组成。那么，下面图片是一个Simnet模型的具化表现形式，
+&lt;img src=&quot;/img/in-post/simnet_2017_06.png&quot; alt=&quot;Simnet的一个表现形式&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其中输入层是一个典型的Pairwise的三元组(Pos, Query, Neg)，在Measurement Layer之前，都是表示模块，其中这里的表示模块就是简单的BOW。在进入Measurement的之前，所有Pos，Query，Neg都被影射到一个256维的空间里，在这个空间中我们希望Pos向量能和Query向量夹角越小越好，而Query和Neg的夹角越小越好。因此我们使用了cos做度量函数，HingeLoss做Loss函数。&lt;/p&gt;
+
+&lt;p&gt;###应用和变形&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;应用方面，在对话系统中，Query就是提问，Pos就是回答，Neg是随机选择的一句话。在搜索中，Query就是搜索问题，Pos就是被点击的文档，Neg就是未被点击的文档。&lt;/li&gt;
+  &lt;li&gt;变形方面，对于表示层的改变，其中有利用LSTM，RNN，CNN对其表示形式改变，对于评估模块，使用海明距会提高整个计算速度和降低计算复杂度。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;##PairwiseRanking的具体应用&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;搜狐比赛中使用Tensorflow写的PairwiseRanking。&lt;/li&gt;
+  &lt;li&gt;知乎比赛中使用Keras写的PairwiseRanking。&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Sun, 11 Jun 2017 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/06/11/PairwiseRanking-2017/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/06/11/PairwiseRanking-2017/</guid>
+        
+        <category>Learn to Rank，PairwiseRanking的专题。</category>
+        
+        
+      </item>
     
       <item>
         <title>Deep Q Learning in Pong Game</title>
@@ -19,20 +98,28 @@
 
 &lt;p&gt;Deep Q Learning 是一个数学公式很复杂，但道理太简单的学习。
 在看本篇内容前，请先阅读 Google 的关于DQN的ppt，&lt;a href=&quot;http://www.iclr.cc/lib/exe/fetch.php?media=iclr2015:silver-iclr2015.pdf&quot;&gt;Deep Reinforcement Learning. David Silver, Google DeepMind&lt;/a&gt;，数学部分不需要特别看懂。&lt;/p&gt;
+
 &lt;h2 id=&quot;走别人走过的路&quot;&gt;走别人走过的路&lt;/h2&gt;
+
 &lt;p&gt;首先我们解释下什么是，Q Learning：&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;Q_{i+1}(s,a) = E[r + \theta \max_{a'}Q_i(s',a')|s,a]&lt;/script&gt;
 
 &lt;p&gt;这个公式其实很容易理解，它就是说，第i轮的value，&lt;script type=&quot;math/tex&quot;&gt;Q(s,a)&lt;/script&gt;和第i+1轮的&lt;script type=&quot;math/tex&quot;&gt;Q(s',a')&lt;/script&gt;的关系，也就是当前利益&lt;script type=&quot;math/tex&quot;&gt;r&lt;/script&gt;加上未来最大利益&lt;script type=&quot;math/tex&quot;&gt;\max_{a'}Q_i(s',a')&lt;/script&gt;乘以一个折扣&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;(为什么用折扣&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;,大家可以看看经济学书，因为我们总是对未来利益打折计算的)。其实这个过程就是第i个人帮你走过一段路，他总结了这段路上所得所失，你作为第i+1个人就会避免他走过的错路，就会期望走他走的对的路。所以每一个i+1都是站在i的人的肩膀上走路。&lt;/p&gt;
+
 &lt;h2 id=&quot;有点探索精神exploiting-or-exploring&quot;&gt;有点探索精神，Exploiting or Exploring&lt;/h2&gt;
+
 &lt;p&gt;走别人走过的路很简单，但是似乎世界需要探索。如果你不设置探索，很多时候未知的路就走不出来，未知的美就探索不到。其实用数学的语言就是，你会陷入一个局部最优，而不是全局最优。所以我们经常会讨论我们该花多少概率探索未知，花多少时间挖掘已知。&lt;/p&gt;
+
 &lt;h2 id=&quot;deep为了找到似曾相识的路&quot;&gt;Deep：为了找到“似曾相识”的路&lt;/h2&gt;
+
 &lt;p&gt;其实，一直以来，Q Learning唯一可以炫耀的其实是数学上收敛这个性质，应该是&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
 \theta &lt; 1 %]]&gt;&lt;/script&gt;的原因吧。其实Q Learning就是个暴力搜索。&lt;/p&gt;
 
 &lt;p&gt;那么为什么在引入Deep以后火起来了呢，因为Deep可以记住很像的图像。Deep的本质是感知，就是能看出来所谓很像的东西，感觉人的语气，感情，这就是Deep的好处。而且Deep处理的越好，收敛速度越快，因为“举一反三”。&lt;/p&gt;
+
 &lt;h1 id=&quot;代码解读&quot;&gt;代码解读&lt;/h1&gt;
+
 &lt;ul&gt;
   &lt;li&gt;深度网络, 输入是上篇文章的prepro函数处理过的图片，当然如果换成cnn应该训练速度会增加，输出是每一个action的预估Q值。&lt;/li&gt;
 &lt;/ul&gt;
@@ -94,23 +181,40 @@
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;deep-reinforcement-learning&quot;&gt;Deep Reinforcement Learning&lt;/h2&gt;
+
 &lt;p&gt;Deep Reinforce Learning可以从下面几个资料中获得，&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://webdocs.cs.ualberta.ca/~sutton/book/the-book.html&quot;&gt;Reinforcement Learning: An Introduction. Richard S. Sutton and Andrew G. Barto&lt;/a&gt;，这本书可以说是整个Reinforcement Learning最权威的书籍，尤其第二版加入了很多关于Deep的东西。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.iclr.cc/lib/exe/fetch.php?media=iclr2015:silver-iclr2015.pdf&quot;&gt;Deep Reinforcement Learning. David Silver, Google DeepMind&lt;/a&gt;，这是DeepMind一个ppt主要讲的是Deep Q-Network。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html&quot;&gt;UCL的一个关于Deep Reinforcement Learning的课程&lt;/a&gt;。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://karpathy.github.io/2016/05/31/rl/&quot;&gt;Policy Gradient Tutoiral&lt;/a&gt;，本文的代码以及解释来源于此。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://webdocs.cs.ualberta.ca/~sutton/book/the-book.html&quot;&gt;Reinforcement Learning: An Introduction. Richard S. Sutton and Andrew G. Barto&lt;/a&gt;，这本书可以说是整个Reinforcement Learning最权威的书籍，尤其第二版加入了很多关于Deep的东西。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.iclr.cc/lib/exe/fetch.php?media=iclr2015:silver-iclr2015.pdf&quot;&gt;Deep Reinforcement Learning. David Silver, Google DeepMind&lt;/a&gt;，这是DeepMind一个ppt主要讲的是Deep Q-Network。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html&quot;&gt;UCL的一个关于Deep Reinforcement Learning的课程&lt;/a&gt;。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://karpathy.github.io/2016/05/31/rl/&quot;&gt;Policy Gradient Tutoiral&lt;/a&gt;，本文的代码以及解释来源于此。&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;policy-gradient&quot;&gt;Policy Gradient&lt;/h2&gt;
+
 &lt;h3 id=&quot;what-is-policy-gradient&quot;&gt;what is policy gradient&lt;/h3&gt;
+
 &lt;p&gt;在笔者看来，Policy Gradient是对于一个Policy的求导，也就是对于一个映射函数（state -&amp;gt; action）的求导。&lt;/p&gt;
+
 &lt;h3 id=&quot;why-policy-gradient&quot;&gt;why policy gradient&lt;/h3&gt;
+
 &lt;p&gt;Policy Gradient的出现是因为Deep Learning的出现，否则，怎么会有人想到为一个Policy函数求Gradient呢。相比于Deep Q-learning，Policy Gradient更容易实现，也更容易做BP，如果想了解细节，请看&lt;a href=&quot;http://karpathy.github.io/2016/05/31/rl/&quot;&gt;Policy Gradient Tutoiral&lt;/a&gt;。&lt;/p&gt;
+
 &lt;h3 id=&quot;loss-of-policy-gradient&quot;&gt;Loss of Policy Gradient&lt;/h3&gt;
+
 &lt;p&gt;其实Policy Gradient的Loss是Log Loss，也就是Cross Entropy，但是有一个trick的地方是，Cross Entropy计算出的gradient的只是一个方向，它的值需要再乘以discount reward，具体数学可以看&lt;a href=&quot;http://karpathy.github.io/2016/05/31/rl/&quot;&gt;Policy Gradient Tutoiral&lt;/a&gt;，代码部分解释可以看下面。&lt;/p&gt;
 
 &lt;h2 id=&quot;代码解读&quot;&gt;&lt;a href=&quot;https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5&quot;&gt;代码解读&lt;/a&gt;&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;observation 代码，&lt;code class=&quot;highlighter-rouge&quot;&gt;prepro(I)&lt;/code&gt;函数中，做了一些剔除背景的操作。&lt;/li&gt;
 &lt;/ul&gt;
@@ -188,6 +292,7 @@
 &lt;/div&gt;
 
 &lt;h2 id=&quot;policy-gradient-in-pong-game-with-tensorflow&quot;&gt;Policy Gradient in Pong Game with Tensorflow&lt;/h2&gt;
+
 &lt;p&gt;这段代码是我根据网上一个人的代码改写的，他写的代码虽然说是Policy Gradient，但实际只用了L2的loss，其实是错误的。&lt;/p&gt;
 
 &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;np&lt;/span&gt;
