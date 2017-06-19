@@ -170,13 +170,13 @@ MathJax.Hub.Config({
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-deepq-2017.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-pwintro-2017.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-deepq-2017.jpg')
+        background-image: url('/img/post-pwintro-2017.jpg')
     }
 
     
@@ -239,7 +239,7 @@ MathJax.Hub.Config({
   <li>应用：Search，Collaborative Filtering，Key Phrase Extraction。</li>
 </ol>
 
-<p>###主要研究问题</p>
+<h3 id="主要研究问题">主要研究问题</h3>
 <ol>
   <li>数据标记：利用相关程度做标记；利用排序序列做标记；利用整个序列的顺序做标记（极少数）。</li>
   <li>特征工程：深度提取，一些标准提取。</li>
@@ -247,7 +247,7 @@ MathJax.Hub.Config({
   <li>学习算法：SVM-based, Boosting-based, Neural Network-based, Others.</li>
 </ol>
 
-<p>##Pairwise Ranking</p>
+<h2 id="pairwise-ranking">Pairwise Ranking</h2>
 <ol>
   <li>将ranking转成Pairwise 分类：给予任意一个配对(x1，x2)，输出
 f(x1) - f(x2)。学习器就是学习函数f(x)。</li>
@@ -257,26 +257,26 @@ f(x1) - f(x2)。学习器就是学习函数f(x)。</li>
 </ol>
 
 <h2 id="simnet模型">Simnet模型</h2>
-<p>###简单介绍
-   这是我在百度NLP部实习学到的主要模型，这个模型被广泛利用在大搜，度秘以及广告等业务上。本来并不准备展现出来，但是百度NLP组已经将其技术发布在机器之心上,<a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650727938&amp;idx=3&amp;sn=c0f0479d3edc4ca07cd2cec16be830bd&amp;chksm=871b227cb06cab6af4f2f3c1aa405a12733d95d090c55d10753240facdbdea2d8767e08962eb&amp;mpshare=1&amp;scene=1&amp;srcid=0615Z8RrrVK6msstXZcPhjVY&amp;key=227c90f337be412a6384bdda58f606ec845987b98855fde3fde65e6fabaeeefbd3f741bbb8ac5f46bf20ab9d1c959e9f05024c1defb01296591b65b9323ef2da51a436780b22edb04bb31fc2023369d0&amp;ascene=0&amp;uin=ODcyOTEwNjYw&amp;devicetype=iMac+MacBookPro13%2C1+OSX+OSX+10.12+build(16A2323a)&amp;version=12020810&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=tRRZU9r72M2vJDTRV%2BtpkBra3haXN0qOIhcDTxttcyQzhULNlEBgidR48k7bTgUV">百度NLP|神经网络语义匹配技术</a>，我在此利用自己的理解对其进行一定的补充。
+<h3 id="简单介绍">简单介绍</h3>
+<p>这是我在百度NLP部实习学到的主要模型，这个模型被广泛利用在大搜，度秘以及广告等业务上。本来并不准备展现出来，但是百度NLP组已经将其技术发布在机器之心上,<a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650727938&amp;idx=3&amp;sn=c0f0479d3edc4ca07cd2cec16be830bd&amp;chksm=871b227cb06cab6af4f2f3c1aa405a12733d95d090c55d10753240facdbdea2d8767e08962eb&amp;mpshare=1&amp;scene=1&amp;srcid=0615Z8RrrVK6msstXZcPhjVY&amp;key=227c90f337be412a6384bdda58f606ec845987b98855fde3fde65e6fabaeeefbd3f741bbb8ac5f46bf20ab9d1c959e9f05024c1defb01296591b65b9323ef2da51a436780b22edb04bb31fc2023369d0&amp;ascene=0&amp;uin=ODcyOTEwNjYw&amp;devicetype=iMac+MacBookPro13%2C1+OSX+OSX+10.12+build(16A2323a)&amp;version=12020810&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=tRRZU9r72M2vJDTRV%2BtpkBra3haXN0qOIhcDTxttcyQzhULNlEBgidR48k7bTgUV">百度NLP|神经网络语义匹配技术</a>，我在此利用自己的理解对其进行一定的补充。
    首先Simnet是一个End-to-End模型，所谓End-to-End就是它本质上是由多个层次组成，但是每个层次是有关联的，所以我们利用深度学习的方式不仅学习了每一层的参数，关键是学习到的是一个整体，是一个关系。换句话说，如果这些层次单独抽出来，一定没有它们在系统中表现的好。比较有特点的就是word-embedding这个层次，这是simnet在不同任务下都会训练出来的层次，但对于同样的文本不同任务的word-embeeding的结果并不相同。
    其次，Simnet是一个Pairwise Ranking的模型，在抽取出x1，x2的feature层以后，学习f(x),输出是f(x1) - f(x2)。
    第三，Simnet是一个基于SVM的模型，因为它的loss是Hinge Loss。
    最后，Simnet是一个融合模型，它对词和字粒度的模型进行融合，对表示方法可以融合比如LSTM，RNN，CNN以及BOW等。</p>
 
-<p>###模型
-  该模型是由表示模块，评估模块和损失模块等组成。那么，下面图片是一个Simnet模型的具化表现形式，
+<h3 id="模型">模型</h3>
+<p>该模型是由表示模块，评估模块和损失模块等组成。那么，下面图片是一个Simnet模型的具化表现形式，
 <img src="/img/in-post/simnet_2017_06.png" alt="Simnet的一个表现形式" /></p>
 
 <p>其中输入层是一个典型的Pairwise的三元组(Pos, Query, Neg)，在Measurement Layer之前，都是表示模块，其中这里的表示模块就是简单的BOW。在进入Measurement的之前，所有Pos，Query，Neg都被影射到一个256维的空间里，在这个空间中我们希望Pos向量能和Query向量夹角越小越好，而Query和Neg的夹角越小越好。因此我们使用了cos做度量函数，HingeLoss做Loss函数。</p>
 
-<p>###应用和变形</p>
+<h3 id="应用和变形">应用和变形</h3>
 <ol>
   <li>应用方面，在对话系统中，Query就是提问，Pos就是回答，Neg是随机选择的一句话。在搜索中，Query就是搜索问题，Pos就是被点击的文档，Neg就是未被点击的文档。</li>
   <li>变形方面，对于表示层的改变，其中有利用LSTM，RNN，CNN对其表示形式改变，对于评估模块，使用海明距会提高整个计算速度和降低计算复杂度。</li>
 </ol>
 
-<p>##PairwiseRanking的具体应用</p>
+<h2 id="pairwiseranking的具体应用">PairwiseRanking的具体应用</h2>
 <ol>
   <li>搜狐比赛中使用Tensorflow写的PairwiseRanking。</li>
   <li>知乎比赛中使用Keras写的PairwiseRanking。</li>
@@ -293,7 +293,7 @@ f(x1) - f(x2)。学习器就是学习函数f(x)。</li>
                     data-thread-key="/2017/06/11/PairwiseRanking-2017"
                     data-title="PairwiseRanking的介绍"
                     data-url="http://localhost:4000/2017/06/11/PairwiseRanking-2017/"
-                    data-images="http://localhost:4000/img/post-deepq-2017.jpg"
+                    data-images="http://localhost:4000/img/post-pwintro-2017.jpg"
                     data-content="
   “每当我想批评别人的时候，我父亲总对我说，要记住，这世上并不是所有人，都有我拥有的那些优势。”
 

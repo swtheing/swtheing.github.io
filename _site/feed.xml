@@ -5,8 +5,8 @@
     <description>一个关乎于深度学习的故事，一颗期许罗曼蒂克的内心，一位篮球界的地板流选手，一名非专业的脱口秀演员</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 19 Jun 2017 10:42:57 +0800</pubDate>
-    <lastBuildDate>Mon, 19 Jun 2017 10:42:57 +0800</lastBuildDate>
+    <pubDate>Mon, 19 Jun 2017 11:46:21 +0800</pubDate>
+    <lastBuildDate>Mon, 19 Jun 2017 11:46:21 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -35,7 +35,7 @@
   &lt;li&gt;应用：Search，Collaborative Filtering，Key Phrase Extraction。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;###主要研究问题&lt;/p&gt;
+&lt;h3 id=&quot;主要研究问题&quot;&gt;主要研究问题&lt;/h3&gt;
 &lt;ol&gt;
   &lt;li&gt;数据标记：利用相关程度做标记；利用排序序列做标记；利用整个序列的顺序做标记（极少数）。&lt;/li&gt;
   &lt;li&gt;特征工程：深度提取，一些标准提取。&lt;/li&gt;
@@ -43,7 +43,7 @@
   &lt;li&gt;学习算法：SVM-based, Boosting-based, Neural Network-based, Others.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;##Pairwise Ranking&lt;/p&gt;
+&lt;h2 id=&quot;pairwise-ranking&quot;&gt;Pairwise Ranking&lt;/h2&gt;
 &lt;ol&gt;
   &lt;li&gt;将ranking转成Pairwise 分类：给予任意一个配对(x1，x2)，输出
 f(x1) - f(x2)。学习器就是学习函数f(x)。&lt;/li&gt;
@@ -53,26 +53,26 @@ f(x1) - f(x2)。学习器就是学习函数f(x)。&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;simnet模型&quot;&gt;Simnet模型&lt;/h2&gt;
-&lt;p&gt;###简单介绍
-   这是我在百度NLP部实习学到的主要模型，这个模型被广泛利用在大搜，度秘以及广告等业务上。本来并不准备展现出来，但是百度NLP组已经将其技术发布在机器之心上,&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2650727938&amp;amp;idx=3&amp;amp;sn=c0f0479d3edc4ca07cd2cec16be830bd&amp;amp;chksm=871b227cb06cab6af4f2f3c1aa405a12733d95d090c55d10753240facdbdea2d8767e08962eb&amp;amp;mpshare=1&amp;amp;scene=1&amp;amp;srcid=0615Z8RrrVK6msstXZcPhjVY&amp;amp;key=227c90f337be412a6384bdda58f606ec845987b98855fde3fde65e6fabaeeefbd3f741bbb8ac5f46bf20ab9d1c959e9f05024c1defb01296591b65b9323ef2da51a436780b22edb04bb31fc2023369d0&amp;amp;ascene=0&amp;amp;uin=ODcyOTEwNjYw&amp;amp;devicetype=iMac+MacBookPro13%2C1+OSX+OSX+10.12+build(16A2323a)&amp;amp;version=12020810&amp;amp;nettype=WIFI&amp;amp;fontScale=100&amp;amp;pass_ticket=tRRZU9r72M2vJDTRV%2BtpkBra3haXN0qOIhcDTxttcyQzhULNlEBgidR48k7bTgUV&quot;&gt;百度NLP|神经网络语义匹配技术&lt;/a&gt;，我在此利用自己的理解对其进行一定的补充。
+&lt;h3 id=&quot;简单介绍&quot;&gt;简单介绍&lt;/h3&gt;
+&lt;p&gt;这是我在百度NLP部实习学到的主要模型，这个模型被广泛利用在大搜，度秘以及广告等业务上。本来并不准备展现出来，但是百度NLP组已经将其技术发布在机器之心上,&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2650727938&amp;amp;idx=3&amp;amp;sn=c0f0479d3edc4ca07cd2cec16be830bd&amp;amp;chksm=871b227cb06cab6af4f2f3c1aa405a12733d95d090c55d10753240facdbdea2d8767e08962eb&amp;amp;mpshare=1&amp;amp;scene=1&amp;amp;srcid=0615Z8RrrVK6msstXZcPhjVY&amp;amp;key=227c90f337be412a6384bdda58f606ec845987b98855fde3fde65e6fabaeeefbd3f741bbb8ac5f46bf20ab9d1c959e9f05024c1defb01296591b65b9323ef2da51a436780b22edb04bb31fc2023369d0&amp;amp;ascene=0&amp;amp;uin=ODcyOTEwNjYw&amp;amp;devicetype=iMac+MacBookPro13%2C1+OSX+OSX+10.12+build(16A2323a)&amp;amp;version=12020810&amp;amp;nettype=WIFI&amp;amp;fontScale=100&amp;amp;pass_ticket=tRRZU9r72M2vJDTRV%2BtpkBra3haXN0qOIhcDTxttcyQzhULNlEBgidR48k7bTgUV&quot;&gt;百度NLP|神经网络语义匹配技术&lt;/a&gt;，我在此利用自己的理解对其进行一定的补充。
    首先Simnet是一个End-to-End模型，所谓End-to-End就是它本质上是由多个层次组成，但是每个层次是有关联的，所以我们利用深度学习的方式不仅学习了每一层的参数，关键是学习到的是一个整体，是一个关系。换句话说，如果这些层次单独抽出来，一定没有它们在系统中表现的好。比较有特点的就是word-embedding这个层次，这是simnet在不同任务下都会训练出来的层次，但对于同样的文本不同任务的word-embeeding的结果并不相同。
    其次，Simnet是一个Pairwise Ranking的模型，在抽取出x1，x2的feature层以后，学习f(x),输出是f(x1) - f(x2)。
    第三，Simnet是一个基于SVM的模型，因为它的loss是Hinge Loss。
    最后，Simnet是一个融合模型，它对词和字粒度的模型进行融合，对表示方法可以融合比如LSTM，RNN，CNN以及BOW等。&lt;/p&gt;
 
-&lt;p&gt;###模型
-  该模型是由表示模块，评估模块和损失模块等组成。那么，下面图片是一个Simnet模型的具化表现形式，
+&lt;h3 id=&quot;模型&quot;&gt;模型&lt;/h3&gt;
+&lt;p&gt;该模型是由表示模块，评估模块和损失模块等组成。那么，下面图片是一个Simnet模型的具化表现形式，
 &lt;img src=&quot;/img/in-post/simnet_2017_06.png&quot; alt=&quot;Simnet的一个表现形式&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;其中输入层是一个典型的Pairwise的三元组(Pos, Query, Neg)，在Measurement Layer之前，都是表示模块，其中这里的表示模块就是简单的BOW。在进入Measurement的之前，所有Pos，Query，Neg都被影射到一个256维的空间里，在这个空间中我们希望Pos向量能和Query向量夹角越小越好，而Query和Neg的夹角越小越好。因此我们使用了cos做度量函数，HingeLoss做Loss函数。&lt;/p&gt;
 
-&lt;p&gt;###应用和变形&lt;/p&gt;
+&lt;h3 id=&quot;应用和变形&quot;&gt;应用和变形&lt;/h3&gt;
 &lt;ol&gt;
   &lt;li&gt;应用方面，在对话系统中，Query就是提问，Pos就是回答，Neg是随机选择的一句话。在搜索中，Query就是搜索问题，Pos就是被点击的文档，Neg就是未被点击的文档。&lt;/li&gt;
   &lt;li&gt;变形方面，对于表示层的改变，其中有利用LSTM，RNN，CNN对其表示形式改变，对于评估模块，使用海明距会提高整个计算速度和降低计算复杂度。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;##PairwiseRanking的具体应用&lt;/p&gt;
+&lt;h2 id=&quot;pairwiseranking的具体应用&quot;&gt;PairwiseRanking的具体应用&lt;/h2&gt;
 &lt;ol&gt;
   &lt;li&gt;搜狐比赛中使用Tensorflow写的PairwiseRanking。&lt;/li&gt;
   &lt;li&gt;知乎比赛中使用Keras写的PairwiseRanking。&lt;/li&gt;

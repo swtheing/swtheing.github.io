@@ -51,7 +51,7 @@ f(x1) - f(x2)。学习器就是学习函数f(x)。
    
 ### 模型
   该模型是由表示模块，评估模块和损失模块等组成。那么，下面图片是一个Simnet模型的具化表现形式，
-![Simnet的一个表现形式](/img/in-post/simnet_2017_06.png)
+![Simnet的一个表现形式](https://swtheing.github.io/swtheking.github.io/img/in-post/simnet_2017_06.png)
 
   其中输入层是一个典型的Pairwise的三元组(Pos, Query, Neg)，在Measurement Layer之前，都是表示模块，其中这里的表示模块就是简单的BOW。在进入Measurement的之前，所有Pos，Query，Neg都被影射到一个256维的空间里，在这个空间中我们希望Pos向量能和Query向量夹角越小越好，而Query和Neg的夹角越小越好。因此我们使用了cos做度量函数，HingeLoss做Loss函数。
 
