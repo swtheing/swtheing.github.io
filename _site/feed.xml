@@ -5,9 +5,56 @@
     <description>一个关乎于深度学习的故事，一颗期许罗曼蒂克的内心，一位篮球界的地板流选手，一名非专业的脱口秀演员</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 19 Jun 2017 11:46:21 +0800</pubDate>
-    <lastBuildDate>Mon, 19 Jun 2017 11:46:21 +0800</lastBuildDate>
+    <pubDate>Tue, 12 Feb 2019 22:01:34 +0800</pubDate>
+    <lastBuildDate>Tue, 12 Feb 2019 22:01:34 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Hello，2019</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“别急着找骂，问你老爸谁是老大先；不喜欢吵架，喜欢一出来就好炸天”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;忙碌的略微苦涩跌宕起伏的2018&quot;&gt;忙碌的，略微苦涩，跌宕起伏的2018&lt;/h1&gt;
+&lt;h2 id=&quot;工作&quot;&gt;工作&lt;/h2&gt;
+&lt;p&gt;2018对于我来说是提心吊胆的一年，从熟悉的体制内走向真正意义上的互联网。阴差阳错的来到度秘这个快速发展的业务部门，累，快并快乐着是这一年的代名词。这一年，凭着业绩和技术上的洞见力快速得到大家的信任，其中熬过的夜，坚持过的选择，快速的实现都是上升路上的助力。通过在百度NLP学来的一些深度学习套路，一年来做比赛堆出来的感觉和做学术时培养的标准，完成了一些有挑战的任务。但，做业务不同于学术，产品本身大于数据驱动，数据驱动大于模型收益，一个简单可行的产品idea比技术有用的多。&lt;/p&gt;
+
+&lt;p&gt;我是一个喜欢简单，快速的人。在强业务环境中，当我意识到挖坑比做技术重要的时候，也不免走向了挖坑大军中去了。现在回头看看，有很多该坚持的没有坚持，下半年对业务的失望也使得我慢慢沉沦到和大家一样，用简单的方法做事情，不细想，不深究。不过，年底group leader给了一个很高的绩效，而且和我聊了很久，让我再次唤起坚持创新的激情。唯有才情不可辜负。&lt;/p&gt;
+
+&lt;h2 id=&quot;生病&quot;&gt;生病&lt;/h2&gt;
+&lt;p&gt;2018年的病毫无预兆的来到，让我一下子慌了神，至今还是锤得我晕晕乎乎的。克罗恩这个词汇出现在我眼睛里的时候，我是绝望的。当我在联系了这几年一直反复无常的身体状况，看了很多的资料以后，越来越坚信自己得了这个怪病。一度绝望，惊慌把自己本就脆弱的心灵占得满满的。在预想了最坏的情况，迷茫了将近一周时间以后，经过一番检查，还是比想象得好一些。非典型的克罗恩病，还没有特别糟糕的并发症是我唯一可以庆幸的事情。在两个月基础治疗以后，下一次检查希望能度过难关。&lt;/p&gt;
+
+&lt;h2 id=&quot;迷茫和疲惫的身心&quot;&gt;迷茫和疲惫的身心&lt;/h2&gt;
+&lt;p&gt;这一年从体制内完全出来了，本是希望一展宏图，但却遇到了一场疾病。互联网这种快消式的快感，一度让我觉得很成迷，但回头看来还是迷茫和困顿。该去更好的地方遇到更好的人，还是通过改变自己来适应互联网的快速环境，都是新的一年需要抉择的事情。但是有些改变确实是自己需要做的，就是多点耐心，压制欲望，提升自己破局，布局能力。&lt;/p&gt;
+
+&lt;h1 id=&quot;新年的okr&quot;&gt;新年的OKR&lt;/h1&gt;
+&lt;h2 id=&quot;引子&quot;&gt;引子&lt;/h2&gt;
+&lt;p&gt;OKR是整个互联网新流行的名词，Objectives and Key Results。粗略地研究了一下，发现十分适合作为制定规划，既让你抬头看远方，也时刻提醒你低头看脚下的路。&lt;/p&gt;
+
+&lt;h2 id=&quot;objective&quot;&gt;Objective&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;提升自己的个人价值，从收入，能力等方面。&lt;/li&gt;
+  &lt;li&gt;身心变得可以应对一些挑战。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;key-result&quot;&gt;Key Result&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;控制克罗恩持续在缓解期。&lt;/li&gt;
+  &lt;li&gt;真正从学习和工作中得到快乐。&lt;/li&gt;
+  &lt;li&gt;完成一篇高质量文章。&lt;/li&gt;
+  &lt;li&gt;在RL领域继续学一门课程。&lt;/li&gt;
+  &lt;li&gt;收入到60W。&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Tue, 12 Feb 2019 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2019/02/12/OKR/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/02/12/OKR/</guid>
+        
+        <category>生活。</category>
+        
+        
+      </item>
     
       <item>
         <title>PairwiseRanking的介绍</title>
@@ -62,7 +109,7 @@ f(x1) - f(x2)。学习器就是学习函数f(x)。&lt;/li&gt;
 
 &lt;h3 id=&quot;模型&quot;&gt;模型&lt;/h3&gt;
 &lt;p&gt;该模型是由表示模块，评估模块和损失模块等组成。那么，下面图片是一个Simnet模型的具化表现形式，
-&lt;img src=&quot;/img/in-post/simnet_2017_06.png&quot; alt=&quot;Simnet的一个表现形式&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;https://swtheing.github.io/swtheking.github.io/img/in-post/simnet_2017_06.png&quot; alt=&quot;Simnet的一个表现形式&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;其中输入层是一个典型的Pairwise的三元组(Pos, Query, Neg)，在Measurement Layer之前，都是表示模块，其中这里的表示模块就是简单的BOW。在进入Measurement的之前，所有Pos，Query，Neg都被影射到一个256维的空间里，在这个空间中我们希望Pos向量能和Query向量夹角越小越好，而Query和Neg的夹角越小越好。因此我们使用了cos做度量函数，HingeLoss做Loss函数。&lt;/p&gt;
 
@@ -83,7 +130,7 @@ f(x1) - f(x2)。学习器就是学习函数f(x)。&lt;/li&gt;
         <link>http://localhost:4000/2017/06/11/PairwiseRanking-2017/</link>
         <guid isPermaLink="true">http://localhost:4000/2017/06/11/PairwiseRanking-2017/</guid>
         
-        <category>Learn to Rank，PairwiseRanking的专题。</category>
+        <category>PairwiseRanking的专题。</category>
         
         
       </item>
