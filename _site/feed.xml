@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>S&amp;W Blog</title>
+    <description>一个关乎于深度学习的故事，一颗期许罗曼蒂克的内心，一位篮球界的地板流选手，一名非专业的脱口秀演员</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 13 Feb 2019 19:29:29 +0800</pubDate>
+    <lastBuildDate>Wed, 13 Feb 2019 19:29:29 +0800</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Hello 2017</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;引言&quot;&gt;引言&lt;/h2&gt;
+
+&lt;p&gt;S&amp;amp;W， 一个非典型的审美主义者的博客破壳而出。&lt;/p&gt;
+
+&lt;p&gt;什么是审美主义者，什么是非典型的审美主义者，什么是S&amp;amp;W，S&amp;amp;W是做什么的？？？？&lt;/p&gt;
+
+&lt;p id=&quot;build&quot;&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;正文&quot;&gt;正文&lt;/h2&gt;
+&lt;h3 id=&quot;审美aesthetic&quot;&gt;审美，Aesthetic&lt;/h3&gt;
+&lt;p&gt;“一个女人因为一个男人的样貌而喜欢他，叫好色，&lt;/p&gt;
+
+&lt;p&gt;一个男人因为一个女人的样貌而喜欢她，叫审美。”&lt;/p&gt;
+
+&lt;p&gt;一个爱好审美的计算机程序员；没有创造美的能力，却还有些审视美的癖好；没有研究过随机算法，却还能分得清蒙特卡洛和拉斯维加斯，没学过深度学习，却有点深度的机器学习学者，这就是我，S&amp;amp;W，一个人工智能界的小学生。
+###主义，-Ism
+“少谈点主义，多谈点问题。”&lt;/p&gt;
+
+&lt;p&gt;一个有点主意，又有点主义的人。喜欢大佬，喜欢Jobs，Gates；喜欢Geek，喜欢Musk，喜欢Mark；也喜欢伟人，喜欢润之，喜欢蛤蛤。有主意易，有主义难，有主义易，坚持主义难。虽然喜欢主义，喜欢谈主义，但骨子里鄙视那些只谈主义，却无主意之人。一个每谈一次主义，就会拿几个问题来解决解决的人。
+###者，-Ist
+“侠之大者，为国为民。”
+者，是之乎者也的者，没啥意思，放在后面，逼格挺高。
+###非典型，Atypia
+“Atypia, not SARS.”&lt;/p&gt;
+
+&lt;p&gt;相比于典型的，不那么典型，相比于不典型的，有点典型。&lt;/p&gt;
+
+&lt;h2 id=&quot;后记&quot;&gt;后记&lt;/h2&gt;
+
+&lt;h3 id=&quot;why-sw&quot;&gt;Why S&amp;amp;W&lt;/h3&gt;
+&lt;p&gt;很害怕人问，你为什么叫S&amp;amp;W，&amp;amp;是什么意思，那我只能回答，“啊？”。&lt;/p&gt;
+
+&lt;p&gt;你难道不觉得，SW感觉放在首页太空了？&lt;/p&gt;
+
+&lt;p&gt;如果你愿意，可以叫我，S#W，S%W，S*W，但千万别叫SBW，感觉不太文雅。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 01 Jan 2017 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/01/01/hello-2017/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/01/01/hello-2017/</guid>
+        
+        <category>生活</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
