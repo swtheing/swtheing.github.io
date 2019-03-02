@@ -5,10 +5,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="一个关乎于深度学习的故事，一颗期许罗曼蒂克的内心，一位篮球界的地板流选手，一名非专业的脱口秀演员">
     <meta name="keywords"  content="S&W, 沈炜，炜，2009，DQN，Deep Reinforcement Learning，NLP">
     <meta name="theme-color" content="#000000">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="沈炜的博客 | S&W Blog">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="你来到了没有知识的荒原 :(">
+    
+    <meta property="og:image" content="http://localhost:4000https://swtheing.github.io/swtheking.github.io/img/sw.JPG">
+    <meta property="og:url" content="http://localhost:4000/404.html">
+    <meta property="og:site_name" content="沈炜的博客 | S&W Blog">
     
     <title>沈炜的博客 | S&W Blog</title>
 
@@ -27,20 +37,10 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
-
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
-    <!-- Hux Delete, sad but pending in China
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -59,7 +59,9 @@
 <body ontouchstart="">
 
     <!-- Navigation -->
+
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -80,17 +82,29 @@
                         <a href="/">Home</a>
                     </li>
                     
+                    
+                    
+                    
                     <li>
                         <a href="/about/">About</a>
                     </li>
+                    
+                    
                     
                     <li>
                         <a href="/portfolio/">Portfolio</a>
                     </li>
                     
+                    
+                    
+                    
+                    
+                    
+                    
                     <li>
                         <a href="/tags/">Tags</a>
                     </li>
+                    
                     
                 </ul>
             </div>
@@ -177,23 +191,26 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                    
-                    
-
-                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
-                    
-                    
+                <!-- SNS Link -->
+                
 
 
-                    
-                    
-                    
-                </ul>
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  
+</ul>
+
                 <p class="copyright text-muted">
                     Copyright &copy; S&W Blog 2019
                     <br>
-                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="100px" height="20px"
@@ -209,6 +226,7 @@
 <script src="/js/jquery.min.js "></script>
 
 <!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
 <script src="/js/bootstrap.min.js "></script>
 
 <!-- Custom Theme JavaScript -->
@@ -216,16 +234,8 @@
 
 <!-- Service Worker -->
 
-<script type="text/javascript">
-    if(navigator.serviceWorker){
-        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
-        navigator.serviceWorker
-            .register('/sw.js')
-            .then((registration) => {console.log('Service Worker Registered. ', registration)})
-            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
-    }
-</script>
-
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
 
 
 <!-- async load function -->
@@ -240,15 +250,15 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
-     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
 -->
 <!--
     <script>
@@ -260,19 +270,8 @@
 -->
 
 
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async('/js/jquery.tagcloud.js',function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
+
+
 
 <!--fastClick.js -->
 <script>
@@ -306,9 +305,11 @@
 
 
 
-
 <!-- Side Catalog -->
 
+
+
+<!-- Multi-Lingual -->
 
 
 
