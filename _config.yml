@@ -6,7 +6,7 @@ email: shenwei0917@126.com
 description: "一个关乎于深度学习的故事，一颗期许罗曼蒂克的内心，一位篮球界的地板流选手，一名非专业的脱口秀演员"
 keyword: "S&W, 沈炜，炜，2009，DQN，Deep Reinforcement Learning，NLP"
 url: "https://swtheing.github.io/"              # your host, for absolute URL
-baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: "https://swtheing.github.io/"                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
